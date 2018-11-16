@@ -19,23 +19,19 @@ type Props = {
 }
 
 type State = {
-  limitDescription: boolean
 }
+
+const limitDescription = true
 
 export default class Header extends React.Component<Props, State> {
   constructor (props: Props) {
     super(props)
-    this.state = { limitDescription: true }
   }
 
   get description () {
     const MAX_LENGTH = 115
     const { description } = this.props.post
-    return this.state.limitDescription ? _.truncate(description, {length: MAX_LENGTH}) : description
-  }
-
-  toggleLimitDescription = () => {
-    this.setState(prevState => ({ limitDescription: !prevState.limitDescription }))
+    return limitDescription ? _.truncate(description, {length: MAX_LENGTH}) : description
   }
 
   render () {
@@ -59,8 +55,8 @@ export default class Header extends React.Component<Props, State> {
             <Text style={styles.description}>
               <Text style={styles.username}>{author.username + ' '}</Text>
               {this.description}
-              <Text style={styles.showMoreText} onPress={this.toggleLimitDescription}>
-                {` ${this.state.limitDescription? 'mais' : 'menos'}`}
+              <Text style={styles.showMoreText} onPress={() => {}}>
+                {` ${limitDescription? 'mais' : 'menos'}`}
                 </Text>
             </Text>
           </View>
