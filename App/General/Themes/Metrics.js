@@ -15,7 +15,9 @@ const metrics = {
   screenWidth: width < height ? width : height,
   screenHeight: width < height ? height : width,
   images: {
-    small: 20
+    small: 20,
+    regular: 26,
+    medium: 34
   }
 }
 

@@ -2,6 +2,7 @@ const type = {
   logo: 'Pacifico-Regular',
   base: 'OpenSans-Regular',
   bold: 'OpenSans-Bold',
+  semiBold: 'OpenSans-SemiBold',
   emphasis: 'OpenSans-Italic'
 }
 
@@ -16,7 +17,7 @@ const size = {
   regular: 14,
   medium: 13,
   small: 12,
-  tiny: 8.5
+  tiny: 9
 }
 
 const style = {
@@ -46,11 +47,11 @@ const style = {
   },
   normal: {
     fontFamily: type.base,
-    fontSize: size.regular
+    fontSize: size.medium
   },
   description: {
     fontFamily: type.base,
-    fontSize: size.medium
+    fontSize: size.small
   },
   emphasis: {
     fontFamily: type.emphasis,
@@ -59,6 +60,14 @@ const style = {
   logo: {
     fontSize: size.h5,
     fontFamily: type.logo
+  },
+  username: {
+    fontSize: size.regular,
+    fontFamily: type.bold
+  },
+  date: {
+    fontSize: size.tiny,
+    fontFamily: type.semiBold
   }
 }
 
