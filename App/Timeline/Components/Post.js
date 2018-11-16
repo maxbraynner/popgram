@@ -7,6 +7,7 @@ import { Images } from '../../General/Themes'
 import UserMiniature from './UserMiniature'
 import ImageButton from './ImageButton'
 import _ from 'lodash'
+import moment from 'moment'
 import Comment from './Comment'
 import type { Post } from '../Types/PostsTypes'
 
@@ -68,8 +69,8 @@ export default class Header extends React.Component<Props, State> {
               {`Ver todos os ${post.comments} comentários`}
             </Text>
           </TouchableOpacity>
-          <Comment userPic={author.picture} onComment={onComment} />
-          <Text style={styles.date}>{post.createdAt.toUpperCase()}</Text>
+          <Comment userPic={Images.fallbackUserPic} onComment={onComment} />
+          <Text style={styles.date}>{moment(post.createdAt).fromNow()}</Text>
         </View>
       </View>
     )
