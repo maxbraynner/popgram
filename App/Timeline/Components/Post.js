@@ -21,17 +21,18 @@ type Props = {
 type State = {
 }
 
-const limitDescription = true
-
 export default class Header extends React.Component<Props, State> {
   constructor (props: Props) {
     super(props)
+    this.state = {
+      limitDescription: true
+    }
   }
 
   get description () {
     const MAX_LENGTH = 115
     const { description } = this.props.post
-    return limitDescription ? _.truncate(description, {length: MAX_LENGTH}) : description
+    return this.state.limitDescription ? _.truncate(description, {length: MAX_LENGTH}) : description
   }
 
   render () {
@@ -55,9 +56,16 @@ export default class Header extends React.Component<Props, State> {
             <Text style={styles.description}>
               <Text style={styles.username}>{author.username + ' '}</Text>
               {this.description}
-              <Text style={styles.showMoreText} onPress={() => {}}>
-                {` ${limitDescription? 'mais' : 'menos'}`}
-                </Text>
+              <Text
+                style={styles.showMoreText}
+                onPress={() => {
+                  this.setState(prevState => ({
+                    limitDescription: !prevState.limitDescription
+                  }))
+                }}
+              >
+                {` ${this.state.limitDescription ? 'mais' : 'menos'}`}
+              </Text>
             </Text>
           </View>
           <TouchableOpacity onPress={showComments}>
