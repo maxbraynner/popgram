@@ -6,7 +6,7 @@ import styles from './Styles/CommentStyle'
 
 type Props = {
   comment?: string,
-  onComment?: () => {},
+  onComment?: (comment: string) => mixed,
   userPic: { uri: string } | number
 }
 
@@ -20,7 +20,7 @@ export default class Comment extends React.Component<Props, State> {
     this.state = { comment: props.comment ? null : '' }
   }
 
-  onChangeText = (comment) => {
+  onChangeText = (comment: string) => {
     this.setState({ comment })
   }
 
