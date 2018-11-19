@@ -1,11 +1,12 @@
 import { Platform, StyleSheet } from 'react-native'
-import { Colors, Metrics, Fonts } from '../../../General/Themes'
+import { Colors, Metrics, Fonts } from '../../Themes/index'
 
 export default StyleSheet.create({
   container: {
     backgroundColor: Colors.header,
-    justifyContent: 'center',
-    alignItems: 'flex-end',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     height: Metrics.headerHeight,
     ...Platform.select({
       ios: {
@@ -19,18 +20,9 @@ export default StyleSheet.create({
       },
     })
   },
-  userPic: {
-    marginRight: Metrics.baseMargin * 2,
-    height: Metrics.images.small,
-    width: Metrics.images.small,
-    borderRadius: Metrics.images.small / 2
-  },
-  logo: {
-    color: Colors.logoText,
+  center: {
     position: 'absolute',
     left: 0,
-    right: 0,
-    textAlign: 'center',
-    ...Fonts.style.logo
+    right: 0
   }
 })

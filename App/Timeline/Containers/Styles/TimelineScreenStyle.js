@@ -1,4 +1,4 @@
-import { Platform, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { Colors, Metrics, Fonts } from '../../../General/Themes'
 
 export default StyleSheet.create({
@@ -11,5 +11,16 @@ export default StyleSheet.create({
   },
   noPosts: {
     ...Fonts.style.normal
+  },
+  userPic: {
+    marginRight: Metrics.baseMargin * 2,
+    height: Metrics.images.small,
+    width: Metrics.images.small,
+    borderRadius: Metrics.images.small / 2
+  },
+  logo: {
+    color: Colors.logoText,
+    textAlign: 'center',
+    ...Fonts.style.logo
   }
 })

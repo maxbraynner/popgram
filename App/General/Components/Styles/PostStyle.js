@@ -1,5 +1,5 @@
 import { Platform, StyleSheet } from 'react-native'
-import { Colors, Metrics, Fonts } from '../../../General/Themes'
+import { Colors, Metrics, Fonts } from '../../Themes/index'
 
 export default StyleSheet.create({
   userMiniature: {

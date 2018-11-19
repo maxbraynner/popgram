@@ -3,22 +3,24 @@
 import * as React from 'react'
 import { TouchableOpacity, Image, View, Text } from 'react-native'
 import styles from './Styles/PostStyle'
-import { Images } from '../../General/Themes'
-import UserMiniature from './UserMiniature'
-import ImageButton from './ImageButton'
+import { Images } from '../Themes/index'
+import UserMiniature from '../../Timeline/Components/UserMiniature'
+import ImageButton from '../../Timeline/Components/ImageButton'
 import _ from 'lodash'
 import moment from 'moment'
-import Comment from './Comment'
-import type { Post } from '../Types/PostsTypes'
+import Comment from '../../Timeline/Components/Comment'
+import type { Post } from '../../Timeline/Types/PostsTypes'
 
 type Props = {
   post: Post,
-  onLike: string => void,
+  showCommentBox?: boolean,
+  onLike: (idPhoto: string) => void,
   onComment: string => void,
   showComments: () => void
 }
 
 type State = {
+  limitDescription: boolean
 }
 
 export default class Header extends React.Component<Props, State> {
@@ -47,7 +49,7 @@ export default class Header extends React.Component<Props, State> {
         <View style={styles.details}>
           <View style={styles.buttons}>
             <ImageButton
-              onPress={onLike}
+              onPress={() => onLike(post._id)}
               containerStyle={styles.likeButton}
               source={post.liked ? Images.liked : Images.like} />
             <ImageButton source={Images.comment} onPress={showComments} />
@@ -73,7 +75,9 @@ export default class Header extends React.Component<Props, State> {
               {`Ver todos os ${post.comments} comentários`}
             </Text>
           </TouchableOpacity>
-          <Comment userPic={Images.fallbackUserPic} onComment={onComment} />
+          { this.props.showCommentBox
+            ? <Comment userPic={Images.fallbackUserPic} onComment={onComment} />
+            : null }
           <Text style={styles.date}>{moment(post.createdAt).fromNow()}</Text>
         </View>
       </View>
