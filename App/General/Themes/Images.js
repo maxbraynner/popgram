@@ -4,7 +4,8 @@ const images = {
   liked: require('../Images/icons/liked.png'),
   comment: require('../Images/icons/comments.png'),
   photoExample: require('../Images/photo-example.png'),
-  logoExample: require('../Images/popcodelogo.png')
+  logoExample: require('../Images/popcodelogo.png'),
+  leftArrow: require('../Images/icons/left-arrow.png')
 }
 
 export default images
