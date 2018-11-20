@@ -1,35 +1,21 @@
-import { observable } from 'mobx'
-import { Images } from '../../General/Themes'
+import { observable, flow } from 'mobx'
+import { carregarPosts } from '../../General/Services/Api'
 
 class TimelineStore {
-  posts = observable([
-    {
-      _id: 'abc',
-      url: Images.photoExample,
-      author: {
-        username: 'popcodemobile',
-        picture: Images.logoExample,
-        _id: 'abcdef'
-      },
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet massa elit, ac mollis augue tincidunt ut. Sed nec massa et urna venenatis congue. Nullam quis suscipit elit. ',
-      comments: 25,
-      createdAt: '2018-11-16T18:26:34.158',
-      liked: false
-    },
-    {
-      _id: 'abcd',
-      url: Images.photoExample,
-      author: {
-        username: 'popcodemobile',
-        picture: Images.logoExample,
-        _id: 'abcdef'
-      },
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet massa elit, ac mollis augue tincidunt ut. Sed nec massa et urna venenatis congue. Nullam quis suscipit elit. ',
-      comments: 25,
-      createdAt: '2018-11-16T18:26:34.158',
-      liked: false
+  @observable posts = []
+  @observable carregando = false
+  @observable erro = null
+
+  carregarPosts = flow(function * () {
+    this.carregando = true
+    const resposta = yield carregarPosts()
+    if (resposta.ok) {
+      this.posts = resposta.data
+    } else {
+      this.erro = resposta.data.message
     }
-  ])
+    this.carregando = false
+  })
 }
 
 const timelineStore = new TimelineStore()

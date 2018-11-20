@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import { ScrollView, Image, View, Text } from 'react-native'
+import { FlatList, Image, View, Text, ActivityIndicator } from 'react-native'
 import styles from './Styles/TimelineScreenStyle'
 import alertaEmDesenvolvimento from '../../General/Helpers/Others/alertaEmDesenvolvimento'
 import Header from '../../General/Components/Header'
@@ -9,7 +9,12 @@ import { Images } from '../../General/Themes'
 import timelineStore from '../Stores/TimelineStore'
 import { observer } from 'mobx-react'
 
-const TimelineScreenObserver = observer(class TimelineScreen extends React.Component<Props, State> {
+@observer
+export default class TimelineScreen extends React.Component<Props, State> {
+  componentDidMount () {
+    timelineStore.carregarPosts()
+  }
+
   render () {
     const thereAreNoPosts = false
 
@@ -19,14 +24,16 @@ const TimelineScreenObserver = observer(class TimelineScreen extends React.Compo
           left={<View />}
           right={<Image style={styles.userPic} source={Images.fallbackUserPic} />}
           center={<Text style={styles.logo}>Popgram</Text>} />
-        <ScrollView bounces={false} style={styles.flex}>
-          { thereAreNoPosts ? (
-              <Text style={styles.noPosts}>Não há postagens disponíveis :(</Text>
-            ) : (
-              timelineStore.posts.map((post, index) => (
+        <View style={styles.flex}>
+          {timelineStore.carregando ? (
+            <ActivityIndicator style={{ marginTop: 40 }} size={'large'} color={'blue'} />
+          ) : (
+            <FlatList
+              data={timelineStore.posts}
+              keyExtractor={post => post._id}
+              renderItem={({ item: post, index }) => (
                 <Post
                   showCommentBox
-                  key={post._id}
                   post={post}
                   onLike={() => {
                     const { liked: prevLiked } = timelineStore.posts[index]
@@ -34,12 +41,11 @@ const TimelineScreenObserver = observer(class TimelineScreen extends React.Compo
                   }}
                   onComment={alertaEmDesenvolvimento}
                   showComments={alertaEmDesenvolvimento} />
-              ))
-          ) }
-        </ScrollView>
+              )}
+            />
+          )}
+        </View>
       </View>
     )
   }
-})
-
-export default TimelineScreenObserver
+}

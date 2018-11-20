@@ -7,7 +7,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.background
   },
   flex: {
-    flex: 1,
+    flex: 1
   },
   noPosts: {
     ...Fonts.style.normal

@@ -45,7 +45,7 @@ export default class Header extends React.Component<Props, State> {
         <UserMiniature
           author={author}
           customStyle={styles.userMiniature} />
-        <Image style={styles.photo} source={post.url} />
+        <Image style={styles.photo} source={{ uri: post.url }} />
         <View style={styles.details}>
           <View style={styles.buttons}>
             <ImageButton

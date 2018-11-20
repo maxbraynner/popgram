@@ -18,7 +18,7 @@ export default class UserMiniature extends React.Component<Props, State> {
 
     return (
       <View style={[styles.container, customStyle]}>
-        <Image style={styles.picture} source={picture || Images.fallbackUserPic} />
+        <Image style={styles.picture} source={{ uri: picture } || Images.fallbackUserPic} />
         <Text style={styles.username}>{username}</Text>
       </View>
     )
