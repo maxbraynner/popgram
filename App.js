@@ -6,44 +6,31 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import React, {Component} from 'react'
+import { StatusBar, View } from 'react-native'
+import TimelineScreen from './App/Timeline/Containers/TimelineScreen'
+import PostScreen from './App/Post/Containers/PostScreen'
+import { Colors, Metrics } from './App/General/Themes'
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component<> {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+      <View style={styles.flex}>
+        <View style={styles.statusBar}>
+          <StatusBar backgroundColor={Colors.statusBar} barStyle='light-content' />
+        </View>
+        <TimelineScreen />
       </View>
-    );
+    )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
+const styles = {
+  statusBar: {
+    backgroundColor: Colors.statusBar,
+    height: Metrics.statusBarHeight
+  },
+  flex: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+  }
+}
