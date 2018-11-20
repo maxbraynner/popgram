@@ -19,7 +19,7 @@ export default class App extends Component<> {
         <View style={styles.statusBar}>
           <StatusBar backgroundColor={Colors.statusBar} barStyle='light-content' />
         </View>
-        <PostScreen />
+        <TimelineScreen />
       </View>
     )
   }
