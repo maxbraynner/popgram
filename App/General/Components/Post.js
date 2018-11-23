@@ -13,6 +13,7 @@ import type { Post } from '../../Timeline/Types/PostsTypes'
 
 type Props = {
   post: Post,
+  onPress: (index: number) => void,
   showCommentBox?: boolean,
   onLike: (idPhoto: string) => void,
   onComment: string => void,
@@ -38,14 +39,16 @@ export default class Header extends React.Component<Props, State> {
   }
 
   render () {
-    const { post, post: {author}, onLike, onComment, showComments } = this.props
+    const { onPress, post, post: {author}, onLike, onComment, showComments } = this.props
 
     return (
       <View>
         <UserMiniature
           author={author}
           customStyle={styles.userMiniature} />
-        <Image style={styles.photo} source={{ uri: post.url }} />
+        <TouchableOpacity onPress={onPress} disabled={!onPress}>
+          <Image style={styles.photo} source={{ uri: post.url }} />
+        </TouchableOpacity>
         <View style={styles.details}>
           <View style={styles.buttons}>
             <ImageButton

@@ -7,12 +7,18 @@ import Header from '../../General/Components/Header'
 import Post from '../../General/Components/Post'
 import { Images } from '../../General/Themes'
 import timelineStore from '../Stores/TimelineStore'
+import postStore from '../../Post/Stores/PostStore'
 import { observer } from 'mobx-react'
 
 @observer
 export default class TimelineScreen extends React.Component<Props, State> {
   componentDidMount () {
     timelineStore.carregarPosts()
+  }
+
+  onPress = (index: number): void => {
+    postStore.selectedPost.set(index)
+    this.props.navigation.navigate('PostScreen')
   }
 
   render () {
@@ -35,6 +41,7 @@ export default class TimelineScreen extends React.Component<Props, State> {
                 <Post
                   showCommentBox
                   post={post}
+                  onPress={() => this.onPress(index)}
                   onLike={() => {
                     const { liked: prevLiked } = timelineStore.posts[index]
                     timelineStore.posts[index] = { ...timelineStore.posts[index], liked: !prevLiked }
