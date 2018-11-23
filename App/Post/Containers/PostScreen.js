@@ -22,7 +22,7 @@ const PostScreenObserver = observer(class PostScreen extends React.Component<Pro
         <Header
           left={
             <TouchableOpacity
-              onPress={() => console.warn('kiu')}
+              onPress={() => this.props.navigation.goBack()}
               style={styles.backButton}>
               <Image source={Images.leftArrow} style={styles.leftArrow} />
               <Text style={styles.headerText}>Foto</Text>
