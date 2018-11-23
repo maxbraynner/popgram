@@ -8,8 +8,7 @@
 
 import React, {Component} from 'react'
 import { StatusBar, View } from 'react-native'
-import TimelineScreen from './App/Timeline/Containers/TimelineScreen'
-import PostScreen from './App/Post/Containers/PostScreen'
+import AppNavigation from './App/General/Navigation/AppNavigation'
 import { Colors, Metrics } from './App/General/Themes'
 
 export default class App extends Component<> {
@@ -19,7 +18,7 @@ export default class App extends Component<> {
         <View style={styles.statusBar}>
           <StatusBar backgroundColor={Colors.statusBar} barStyle='light-content' />
         </View>
-        <TimelineScreen />
+        <AppNavigation />
       </View>
     )
   }
