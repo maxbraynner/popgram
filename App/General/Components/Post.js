@@ -39,11 +39,12 @@ export default class Header extends React.Component<Props, State> {
   }
 
   render () {
-    const { onPress, post, post: {author}, onLike, onComment, showComments } = this.props
+    const { onUserPress, onPress, post, post: {author}, onLike, onComment, showComments } = this.props
 
     return (
       <View>
         <UserMiniature
+          onPress={onUserPress}
           author={author}
           customStyle={styles.userMiniature} />
         <TouchableOpacity onPress={onPress} disabled={!onPress}>

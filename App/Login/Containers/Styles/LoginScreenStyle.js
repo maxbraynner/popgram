@@ -32,5 +32,10 @@ export default StyleSheet.create({
   botaoContainer: {
     marginTop: 27,
     alignItems: 'center'
+  },
+  erro: {
+    color: 'red',
+    fontSize: 18,
+    marginVertical: 10
   }
 })

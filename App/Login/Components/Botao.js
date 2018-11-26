@@ -1,8 +1,8 @@
 import React from 'react'
 import { TouchableOpacity, Text, StyleSheet } from 'react-native'
 
-const Botao = () => (
-  <TouchableOpacity style={styles.container}>
+const Botao = ({ onPress }) => (
+  <TouchableOpacity onPress={onPress} style={styles.container}>
     <Text style={styles.text}>Entrar</Text>
   </TouchableOpacity>
 )

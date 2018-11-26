@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react'
-import { Image, View, Text } from 'react-native'
+import { Image, TouchableOpacity, Text } from 'react-native'
 import styles from './Styles/UserMiniatureStyle'
 import { Images } from '../../General/Themes'
 import type { ViewStyleProp } from 'react-native/Libraries/StyleSheet/StyleSheet'
@@ -14,13 +14,13 @@ type Props = {
 
 export default class UserMiniature extends React.Component<Props, State> {
   render () {
-    const { author: { picture, username }, customStyle } = this.props
+    const { author: { picture, username }, customStyle, onPress } = this.props
 
     return (
-      <View style={[styles.container, customStyle]}>
+      <TouchableOpacity onPress={onPress} style={[styles.container, customStyle]}>
         <Image style={styles.picture} source={{ uri: picture } || Images.fallbackUserPic} />
         <Text style={styles.username}>{username}</Text>
-      </View>
+      </TouchableOpacity>
     )
   }
 }

@@ -19,7 +19,9 @@ const metrics = {
     regular: 26,
     medium: 34
   },
-  statusBarHeight: Platform.OS === 'ios' ? 24 : 0
+  statusBarHeight: Platform.OS === 'ios' ? 24 : 0,
+  section: 25,
+  doubleSection: 50
 }
 
 export default metrics

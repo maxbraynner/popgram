@@ -10,6 +10,7 @@ import React, {Component} from 'react'
 import { StatusBar, View } from 'react-native'
 import AppNavigation from './App/General/Navigation/AppNavigation'
 import { Colors, Metrics } from './App/General/Themes'
+import NavigationService from './App/General/Navigation/NavigationService'
 
 export default class App extends Component<> {
   render() {
@@ -18,7 +19,9 @@ export default class App extends Component<> {
         <View style={styles.statusBar}>
           <StatusBar backgroundColor={Colors.statusBar} barStyle='light-content' />
         </View>
-        <AppNavigation />
+        <AppNavigation
+          ref={ref => NavigationService.setTopLevelNavigator(ref)}
+        />
       </View>
     )
   }
