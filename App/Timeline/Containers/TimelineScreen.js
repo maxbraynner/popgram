@@ -41,6 +41,7 @@ export default class TimelineScreen extends React.Component<Props, State> {
                 <Post
                   showCommentBox
                   post={post}
+                  onUserPress={() => this.props.navigation.navigate('Profile')}
                   onPress={() => this.onPress(index)}
                   onLike={() => {
                     const { liked: prevLiked } = timelineStore.posts[index]
